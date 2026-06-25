@@ -1,0 +1,2 @@
+# Compatibility entry point for local runtime installs.
+-r requirements-runtime.in

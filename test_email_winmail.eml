@@ -1,0 +1,27 @@
+MIME-Version: 1.0
+Date: Mon, 01 Jan 2024 12:00:00 +0000
+From: Sender <sender@example.com>
+To: Recipient <recipient@example.com>
+Return-Path: <sender@example.com>
+Subject: Winmail TNEF Sample
+Content-Type: multipart/mixed; boundary="==BOUNDARY=="
+
+--==BOUNDARY==
+Content-Type: text/plain; charset="utf-8"
+
+This message carries an Outlook winmail.dat (TNEF) attachment.
+
+--==BOUNDARY==
+Content-Type: application/ms-tnef; name="winmail.dat"
+Content-Disposition: attachment; filename="winmail.dat"
+Content-Transfer-Encoding: base64
+
+eJ8+IgEAAQaQCAAEAAAAAAABAAEAAQeQCAAEAAAA5AQAAOgAAQOQBgAoAQAAAwAAAB4ANwABAAAA
+FAAAAFdpbm1haWwgVE5FRiBTYW1wbGUAHgB9AAEAAAC3AAAARnJvbTogU2VuZGVyIDxzZW5kZXJA
+ZXhhbXBsZS5jb20+DQpUbzogUmVjaXBpZW50IDxyZWNpcGllbnRAZXhhbXBsZS5jb20+DQpTdWJq
+ZWN0OiBXaW5tYWlsIFRORUYgU2FtcGxlDQpEYXRlOiBNb24sIDAxIEphbiAyMDI0IDEyOjAwOjAw
+ICswMDAwDQpNZXNzYWdlLUlEOiA8dG5lZi1zYW1wbGVAZXhhbXBsZS5jb20+DQoAAB4AExABAAAA
+NAAAADxodG1sPjxib2R5PkhpIGZyb20gdGhlIGVtYmVkZGVkIFRORUY8L2JvZHk+PC9odG1sPgAv
+VA==
+
+--==BOUNDARY==--

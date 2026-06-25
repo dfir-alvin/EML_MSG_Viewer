@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=EML/MSG Email Viewer (Remote Images)
+Comment=View email files with restricted remote image loading
+Exec=EML_MSG_Viewer_remote_image %F
+Icon=email_red
+Categories=Office;Viewer;Email;
+MimeType=message/rfc822;application/vnd.ms-outlook;
+Terminal=false
+StartupNotify=true

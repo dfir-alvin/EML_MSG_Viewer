@@ -1,0 +1,5 @@
+-r requirements-runtime.in
+pyinstaller>=6,<7
+pip-audit>=2.7,<3
+cyclonedx-bom>=6,<8
+

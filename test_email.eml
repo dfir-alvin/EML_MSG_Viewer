@@ -1,0 +1,35 @@
+MIME-Version: 1.0
+Date: Wed, 18 Mar 2026 10:00:00 +0000
+From: Alice <alice@example.com>
+To: Bob <bob@example.com>
+Return-Path: <alice@example.com>
+Subject: Test Email with HTML and Attachments
+Content-Type: multipart/mixed; boundary="==BOUNDARY=="
+
+--==BOUNDARY==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body>
+<h1>Hello, World!</h1>
+<p>This is a <strong>test email</strong> with some features:</p>
+<ul>
+  <li>HTML formatting</li>
+  <li>Links: <a href="https://example.com">HTTPS link</a></li>
+  <li>More links: <a href="http://insecure.example.com">HTTP link</a></li>
+  <li>Email: <a href="mailto:test@example.com">Email link</a></li>
+</ul>
+<p>Security test: <script>alert('XSS!')</script></p>
+<p>External image (should be blocked): <img src="https://external.example.com/tracking.png" /></p>
+</body>
+</html>
+
+--==BOUNDARY==
+Content-Type: text/plain; name="readme.txt"
+Content-Disposition: attachment; filename="readme.txt"
+Content-Transfer-Encoding: base64
+
+SGVsbG8gZnJvbSB0aGUgYXR0YWNobWVudCEgVGhpcyBpcyBhIHRlc3QgZmlsZS4=
+
+--==BOUNDARY==--

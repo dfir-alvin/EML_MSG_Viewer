@@ -1,0 +1,58 @@
+#!/bin/bash
+set -euo pipefail
+
+HERE="$(dirname "$(readlink -f "$0")")"
+export APPDIR="${APPDIR:-$HERE}"
+
+if [[ "$(id -u)" == "0" ]]; then
+    echo "ERROR: Refusing to run as root; the QtWebEngine sandbox must remain enabled." >&2
+    exit 1
+fi
+
+case " ${QTWEBENGINE_CHROMIUM_FLAGS:-} " in
+    *" --no-sandbox "*|*" --disable-setuid-sandbox "*)
+        echo "ERROR: Refusing sandbox-disabling QTWEBENGINE_CHROMIUM_FLAGS." >&2
+        exit 1
+        ;;
+esac
+if [[ -n "${QTWEBENGINE_DISABLE_SANDBOX:-}" && "${QTWEBENGINE_DISABLE_SANDBOX}" != "0" ]]; then
+    echo "ERROR: Refusing QTWEBENGINE_DISABLE_SANDBOX." >&2
+    exit 1
+fi
+unset QTWEBENGINE_DISABLE_SANDBOX
+
+export LD_LIBRARY_PATH="$APPDIR/EML_MSG_Viewer:${LD_LIBRARY_PATH:-}"
+if [[ -n "${WAYLAND_DISPLAY:-}" ]]; then
+    export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-wayland;xcb}"
+else
+    export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-xcb}"
+fi
+
+RUNTIME_DIR_CREATED=""
+if [[ -n "${XDG_RUNTIME_DIR:-}" ]]; then
+    if [[ "${XDG_RUNTIME_DIR}" != /* || ! -d "${XDG_RUNTIME_DIR}" ]]; then
+        echo "ERROR: XDG_RUNTIME_DIR must be an existing absolute directory." >&2
+        exit 1
+    fi
+    owner="$(stat -c '%u' -- "${XDG_RUNTIME_DIR}")"
+    mode="$(stat -c '%a' -- "${XDG_RUNTIME_DIR}")"
+    if [[ "$owner" != "$(id -u)" || "$mode" != "700" ]]; then
+        echo "ERROR: XDG_RUNTIME_DIR must be owned by the current user with mode 0700." >&2
+        exit 1
+    fi
+else
+    umask 077
+    RUNTIME_DIR_CREATED="$(mktemp -d "${TMPDIR:-/tmp}/eml-msg-viewer-runtime.XXXXXX")"
+    chmod 700 "$RUNTIME_DIR_CREATED"
+    export XDG_RUNTIME_DIR="$RUNTIME_DIR_CREATED"
+fi
+
+cleanup_runtime() {
+    if [[ -n "$RUNTIME_DIR_CREATED" && -d "$RUNTIME_DIR_CREATED" ]]; then
+        rm -rf -- "$RUNTIME_DIR_CREATED"
+    fi
+}
+trap cleanup_runtime EXIT
+
+"$APPDIR/EML_MSG_Viewer/EML_MSG_Viewer_remote_image" "$@"
+

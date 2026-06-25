@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>net.nham.EMLMSGViewer</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>EML/MSG Email Viewer</name>
+  <summary>View .eml and .msg email files securely</summary>
+  <description>
+    <p>
+      A secure, offline viewer for .eml and .msg email files.
+      Remote images are blocked by default. JavaScript is disabled.
+      No installation or internet connection required.
+    </p>
+  </description>
+  <content_rating type="oars-1.1"/>
+  <url type="homepage">https://github.com</url>
+  <provides>
+    <mediatype>message/rfc822</mediatype>
+    <mediatype>application/vnd.ms-outlook</mediatype>
+  </provides>
+  <releases>
+    <release version="1.0.0" date="2026-03-19"/>
+  </releases>
+</component>

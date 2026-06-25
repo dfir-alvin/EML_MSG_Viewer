@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=EML/MSG Email Viewer
+Comment=View .eml and .msg email files securely
+Exec=EML_MSG_Viewer %F
+Icon=email_blue
+Categories=Office;Viewer;Email;
+MimeType=message/rfc822;application/vnd.ms-outlook;
+Terminal=false
+StartupNotify=true

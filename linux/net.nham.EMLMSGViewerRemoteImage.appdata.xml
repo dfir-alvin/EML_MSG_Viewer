@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>net.nham.EMLMSGViewerRemoteImage</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>EML/MSG Email Viewer (Remote Images)</name>
+  <summary>View email files with restricted remote image loading</summary>
+  <description>
+    <p>
+      A hardened viewer for .eml, .msg, and winmail.dat files with automatic,
+      restricted remote image loading. JavaScript is disabled, browser network
+      access is blocked, and validated raster images are fetched separately.
+    </p>
+  </description>
+  <content_rating type="oars-1.1"/>
+  <url type="homepage">https://github.com</url>
+  <provides>
+    <mediatype>message/rfc822</mediatype>
+    <mediatype>application/vnd.ms-outlook</mediatype>
+  </provides>
+  <releases>
+    <release version="1.0.0" date="2026-03-19"/>
+  </releases>
+</component>
