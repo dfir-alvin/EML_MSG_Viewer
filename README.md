@@ -2,6 +2,9 @@
 
 All-in-one email file viewer designed around safely view untrusted emails for analysis. Application is largely written via agentic engineering workflow (aka LLM/AI). Program is designed with rudimentary security mechanisms to try and prevent successful execution of potential malware due to file parser abuse, accidental user interactions, and hopefully some of the issues that may come with agentic coding this application. Defense in Depth is still recommended when using this program to review untrusted emails. This project was largely inspired by Outlook's UI, but solves issues of licensing on shared VMs and some user preferring Linux over Windows. 
 
+<img width="1022" height="1048" alt="image" src="https://github.com/user-attachments/assets/4667abbb-fcf3-459a-917d-4edbd48c1c2d" />
+
+
 ## Features
 
 - Support for EML and MSG (with experimental support for embedded winmail.dat files)
